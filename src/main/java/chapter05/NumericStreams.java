@@ -2,8 +2,6 @@ package chapter05;
 
 import chapter04.Dish;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.OptionalInt;
 
 import static chapter04.Dish.menu;
