@@ -3,6 +3,7 @@ package chapter05;
 import chapter04.Dish;
 
 import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 import static chapter04.Dish.menu;
 
@@ -20,6 +21,11 @@ public class NumericStreams {
                 .max();
         int max = maxCalories.getAsInt();
         System.out.println(max);
+
+        //numeric ranges
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0);
+        System.out.println(evenNumbers.count());
 
     }
 }
