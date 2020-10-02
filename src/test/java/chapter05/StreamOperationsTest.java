@@ -20,7 +20,7 @@ public class StreamOperationsTest {
     }
 
     @Test
-    public void test(){
+    public void testGetTransactionByYear2011(){
         List<Transaction> transactionsIn2011 = transactions.stream()
                 .filter(transactions -> transactions.getYear() == 2011)
                 .sorted(Comparator.comparing(Transaction::getValue))
@@ -35,6 +35,18 @@ public class StreamOperationsTest {
         assertThat(second.getValue()).isEqualTo(400);
         assertThat(second.getYear()).isEqualTo(2011);
 
+    }
+
+    @Test
+    public void testGetCitiesWhereTradersWork(){
+        List<String> cities = transactions.stream()
+                .map(transactions -> transactions.getTrader().getCity())
+                .distinct()
+                .collect(Collectors.toList());
+
+        assertThat(cities.size()).isEqualTo(2);
+        assertThat(cities.get(0)).isEqualTo("Cambridge");
+        assertThat(cities.get(1)).isEqualTo("Milan");
     }
 
     private static List<Transaction> buildTransactions(){
