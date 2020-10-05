@@ -75,6 +75,13 @@ public class StreamOperationsTest {
         assertThat(traders).isEqualTo("AlanBrianMarioRaoul");
     }
 
+    @Test
+    public void testThereAreTradersFromMilan(){
+        boolean milanBased = transactions.stream()
+                .anyMatch(transaction -> "Milan".equals(transaction.getTrader().getCity()));
+        assertThat(milanBased).isTrue();
+    }
+
     private static List<Transaction> buildTransactions(){
         Trader raoul = new Trader("Raoul", "Cambridge");
         Trader mario = new Trader("Mario", "Milan");
