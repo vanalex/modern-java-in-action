@@ -1,15 +1,18 @@
 package chapter05;
 
+import org.assertj.core.api.OptionalAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 public class StreamOperationsTest {
 
@@ -80,6 +83,35 @@ public class StreamOperationsTest {
         boolean milanBased = transactions.stream()
                 .anyMatch(transaction -> "Milan".equals(transaction.getTrader().getCity()));
         assertThat(milanBased).isTrue();
+    }
+
+    @Test
+    public void testGetValueFromAlltradersFromcambridge(){
+        List<Integer> valuesFromCambridge = transactions.stream()
+                .filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity()))
+                .map(transaction -> transaction.getValue())
+                .sorted(comparing(Integer::intValue))
+                .collect(Collectors.toList());
+        assertThat(valuesFromCambridge.size()).isEqualTo(4);
+        assertThat(valuesFromCambridge.get(0)).isEqualTo(300);
+        assertThat(valuesFromCambridge.get(1)).isEqualTo(400);
+        assertThat(valuesFromCambridge.get(2)).isEqualTo(950);
+        assertThat(valuesFromCambridge.get(3)).isEqualTo(1000);
+
+    }
+
+    @Test
+    public void testFindTheHiguestvalue(){
+        int highestValue = transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(0, Integer::max);
+        assertThat(highestValue).isEqualTo(1000);
+    }
+
+    @Test
+    public void testFindTheMinimumvalue(){
+        Optional<Transaction> minimumTransaction  = transactions.stream()
+                .min(comparing(Transaction::getValue));
     }
 
     private static List<Transaction> buildTransactions(){
