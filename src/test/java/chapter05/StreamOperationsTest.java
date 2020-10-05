@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StreamOperationsTest {
@@ -23,7 +24,7 @@ public class StreamOperationsTest {
     public void testGetTransactionByYear2011(){
         List<Transaction> transactionsIn2011 = transactions.stream()
                 .filter(transactions -> transactions.getYear() == 2011)
-                .sorted(Comparator.comparing(Transaction::getValue))
+                .sorted(comparing(Transaction::getValue))
                 .collect(Collectors.toList());
 
         assertThat(transactionsIn2011.size()).isEqualTo(2);
@@ -47,6 +48,31 @@ public class StreamOperationsTest {
         assertThat(cities.size()).isEqualTo(2);
         assertThat(cities.get(0)).isEqualTo("Cambridge");
         assertThat(cities.get(1)).isEqualTo("Milan");
+    }
+
+    @Test
+    public void testGetTradersFromCambridge(){
+        List<Trader> traders = transactions.stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> "Cambridge".equals(trader.getCity()))
+                .distinct()
+                .sorted(comparing(Trader::getName))
+                .collect(Collectors.toList());
+
+        assertThat(traders.size()).isEqualTo(3);
+        assertThat(traders.get(0).getName()).isEqualTo("Alan");
+        assertThat(traders.get(1).getName()).isEqualTo("Brian");
+    }
+
+    @Test
+    public void testGetTradersAsStringSorted(){
+        String traders = transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .reduce("", (n1, n2) -> n1 + n2);
+
+        assertThat(traders).isEqualTo("AlanBrianMarioRaoul");
     }
 
     private static List<Transaction> buildTransactions(){
