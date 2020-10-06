@@ -1,4 +1,4 @@
-package charpter01;
+package chapter01;
 
 public class Apple {
 
