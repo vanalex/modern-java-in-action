@@ -1,6 +1,5 @@
 package chapter06;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +8,7 @@ import static java.util.Arrays.asList;
 
 public class DishFactory {
 
-    public static final List<Dish> menu = Arrays.asList(
+    public static final List<Dish> menu = asList(
             new Dish("pork", false, 800, Type.MEAT),
             new Dish("beef", false, 700, Type.MEAT),
             new Dish("chicken", false, 400, Type.MEAT),
