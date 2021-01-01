@@ -7,7 +7,6 @@ import java.util.IntSummaryStatistics;
 import java.util.function.BinaryOperator;
 
 import static chapter06.DishFactory.menu;
-import static chapter06.DishHelper.dishCaloriesComprarator;
 import static java.util.stream.Collectors.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
