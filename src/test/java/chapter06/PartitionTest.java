@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static chapter06.DishFactory.menu;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.partitioningBy;
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PartitionTest {
@@ -35,7 +36,23 @@ public class PartitionTest {
         Map<Type, List<Dish>> veg = result.get(true);
     }
 
+    @Test
+    public void testMostCaloricPartitionByVegetarian(){
+        Object result = mostCaloricPartitionedByVegetarian();
+        Map<Boolean, Map<Type, List<Dish>>> map = (Map<Boolean, Map<Type, List<Dish>>>) result;
+        Dish dish = (Dish) map.get(true);
+        assertThat(dish.isVegetarian()).isTrue();
+    }
+
     private static Map<Boolean, Map<Type, List<Dish>>> vegetarianDishesByType() {
         return menu.stream().collect(partitioningBy(Dish::isVegetarian, groupingBy(Dish::getType)));
+    }
+
+    private static Object mostCaloricPartitionedByVegetarian() {
+        return menu.stream().collect(
+                partitioningBy(Dish::isVegetarian,
+                        collectingAndThen(
+                                maxBy(comparingInt(Dish::getCalories)),
+                                Optional::get)));
     }
 }
