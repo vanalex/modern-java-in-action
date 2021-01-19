@@ -1,6 +1,6 @@
 package chapter10;
 
-import chapter10.model.MethodChainingOrderBuilder;
+import chapter10.builder.MethodChainingOrderBuilder;
 import chapter10.model.Order;
 import org.junit.jupiter.api.Test;
 

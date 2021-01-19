@@ -1,4 +1,8 @@
-package chapter10.model;
+package chapter10.builder;
+
+import chapter10.model.Order;
+import chapter10.model.Stock;
+import chapter10.model.Trade;
 
 public class MethodChainingOrderBuilder {
 
