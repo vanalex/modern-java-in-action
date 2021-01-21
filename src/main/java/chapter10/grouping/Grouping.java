@@ -10,6 +10,7 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 
 import static chapter06.DishFactory.menu;
+import static chapter10.grouping.Grouping.GroupingBuilder.groupOn;
 import static java.util.stream.Collectors.groupingBy;
 
 public class Grouping {
@@ -34,5 +35,31 @@ public class Grouping {
 
     public static <A, B, T> Collector<T, ?, Map<A, Map<B, List<T>>>> twoLevelGroupingBy(Function<? super T, ? extends A> f1, Function<? super T, ? extends B> f2) {
         return groupingBy(f1, groupingBy(f2));
+    }
+
+    public static Map<Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel3() {
+        Collector<? super Dish, ?, Map<Type, Map<CaloricLevel, List<Dish>>>> c = groupOn((Dish dish) -> getCaloricLevel(dish)).after(Dish::getType).get();
+        return menu.stream().collect(c);
+    }
+
+    public static class GroupingBuilder<T, D, K> {
+
+        private final Collector<? super T, ?, Map<K, D>> collector;
+
+        public GroupingBuilder(Collector<? super T, ?, Map<K, D>> collector) {
+            this.collector = collector;
+        }
+
+        public Collector<? super T, ?, Map<K, D>> get() {
+            return collector;
+        }
+
+        public <J> GroupingBuilder<T, Map<K, D>, J> after(Function<? super T, ? extends J> classifier) {
+            return new GroupingBuilder<>(groupingBy(classifier, collector));
+        }
+
+        public static <T, D, K> GroupingBuilder<T, List<T>, K> groupOn(Function<? super T, ? extends K> classifier) {
+            return new GroupingBuilder<>(groupingBy(classifier));
+        }
     }
 }

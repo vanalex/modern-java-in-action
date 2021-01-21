@@ -17,4 +17,10 @@ public class GroupingTest {
         Map<Type, Map<CaloricLevel, List<Dish>>> result = Grouping.groupDishedByTypeAndCaloricLevel2();
         assertThat(result).isNotNull();
     }
+
+    @Test
+    public void testGroupingDishByTypeAndCaloricLevel(){
+        Map<Type, Map<CaloricLevel, List<Dish>>> result = Grouping.groupDishedByTypeAndCaloricLevel3();
+        assertThat(result).isNotNull();
+    }
 }
