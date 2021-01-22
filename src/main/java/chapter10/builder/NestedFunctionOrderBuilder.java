@@ -1,0 +1,24 @@
+package chapter10.builder;
+
+import chapter10.model.Order;
+import chapter10.model.Stock;
+import chapter10.model.Trade;
+
+import java.util.stream.Stream;
+
+public class NestedFunctionOrderBuilder {
+
+    public static Order order(String customer, Trade... trades) {
+        Order order = new Order();
+        order.setCustomer(customer);
+        Stream.of(trades).forEach(order::addTrade);
+        return order;
+    }
+
+    public static Stock stock(String symbol, String market) {
+        Stock stock = new Stock();
+        stock.setSymbol(symbol);
+        stock.setMarket(market);
+        return stock;
+    }
+}
