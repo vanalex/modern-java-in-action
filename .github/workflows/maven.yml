@@ -47,7 +47,7 @@ jobs:
             <toolchain>
               <type>jdk</type>
                 <provides>
-                  <version>11</version>
+                  <version>15</version>
                   <vendor>adopt</vendor>
                 </provides>
                 <configuration>
