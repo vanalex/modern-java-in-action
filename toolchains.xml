@@ -4,7 +4,7 @@
     <toolchain>
         <type>jdk</type>
         <provides>
-            <version>14</version>
+            <version>15</version>
         </provides>
         <configuration>
             <jdkHome>/home/alex/jdk-15.0.2</jdkHome>
