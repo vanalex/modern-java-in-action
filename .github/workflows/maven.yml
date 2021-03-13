@@ -11,54 +11,31 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-        java: [ 8, 11, 15 ]
-      fail-fast: false
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up cache for ~./m2/repository
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-${{ matrix.os }}-java${{ matrix.java }}-
-            maven-${{ matrix.os }}-
-      - name: Install Toolchain JDK
-        if: ${{ matrix.java == '8' }}
-        uses: battila7/jdk-via-jabba@v1
-        with:
-          jdk: adopt-openj9@1.11.0-7
-          javaHomeEnvironmentVariable: TOOLCHAIN_JDK
-      - name: Set up Toolchain
-        if: ${{ matrix.java == '8' }}
-        shell: bash
-        run: |
-          mkdir -p $HOME/.m2 \
-          && cat << EOF > $HOME/.m2/toolchains.xml
-          <?xml version="1.0" encoding="UTF8"?>
-          <toolchains>
-            <toolchain>
-              <type>jdk</type>
-                <provides>
-                  <version>15</version>
-                  <vendor>adopt</vendor>
-                </provides>
-                <configuration>
-                  <jdkHome>${{ env.TOOLCHAIN_JDK }}</jdkHome>
-                </configuration>
-            </toolchain>
-          </toolchains>
-          EOF
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: ${{ matrix.java }}
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Cache local Maven repository
+          uses: actions/cache@v2
+          with:
+            path: ~/.m2/repository
+            key: build-${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+            restore-keys: build-${{ runner.os }}-maven-
+
+      - name: Install JDK
+          uses: AdoptOpenJDK/install-jdk@v1
+          with:
+            version: '15'
+            architecture: x64
+            impl: hotspot
+            targets: 'JDK_8;JAVA_HOME'
+
+      - name: Install Dependencies
+        run: >
+          mvn clean install -B -V -q
+          -DskipTests=true
+          -Dmaven.javadoc.skip=true
+          -Dgpg.skip=true
+          --toolchains .github/workflows/.toolchains.xml
