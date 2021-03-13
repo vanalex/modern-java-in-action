@@ -7,6 +7,11 @@
     <groupId>alex</groupId>
     <artifactId>modernjavainaction</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>15</java.version>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
