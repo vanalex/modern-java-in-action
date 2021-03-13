@@ -39,3 +39,6 @@ jobs:
           -Dmaven.javadoc.skip=true
           -Dgpg.skip=true
           --toolchains .github/workflows/.toolchains.xml
+
+      - name: Build with Maven
+          run: mvn -B package --file pom.xml
