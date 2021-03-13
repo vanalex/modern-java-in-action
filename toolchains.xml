@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+    <!-- JDK toolchains -->
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <version>14</version>
+        </provides>
+        <configuration>
+            <jdkHome>/home/alex/jdk-15.0.2</jdkHome>
+        </configuration>
+    </toolchain>
+    <!-- other toolchains -->
+</toolchains>

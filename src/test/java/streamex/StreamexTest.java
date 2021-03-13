@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static chapter06.DishFactory.menu;
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StreamexTest {
@@ -25,5 +26,10 @@ public class StreamexTest {
         Set<String> expected = Set.of("season fruit", "chicken", "pizza", "salmon", "beef", "rice", "pork", "prawns", "french fries");
         Map<String, List<Dish>> name2Dish = StreamEx.of(menu).groupingBy(Dish::getName);
         assertThat(name2Dish.keySet()).isEqualTo(expected);
+    }
+
+    @Test
+    public void testSelect(){
+        assertThat(asList("a", "b")).isEqualTo(StreamEx.of(1, "a", 2, "b", 3, "cc").select(String.class).filter(s -> s.length() == 1).toList());
     }
 }
