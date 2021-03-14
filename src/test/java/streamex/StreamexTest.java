@@ -32,4 +32,9 @@ public class StreamexTest {
     public void testSelect(){
         assertThat(asList("a", "b")).isEqualTo(StreamEx.of(1, "a", 2, "b", 3, "cc").select(String.class).filter(s -> s.length() == 1).toList());
     }
+
+    @Test
+    public void testIterateWithUnaryOperatorAndLimit() {
+        assertThat(asList("a", "aa", "aaa", "aaaa")).isEqualTo( StreamEx.iterate("a", x -> x + "a").limit(4).toList());
+    }
 }
