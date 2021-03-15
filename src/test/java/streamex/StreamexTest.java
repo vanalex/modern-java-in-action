@@ -37,4 +37,10 @@ public class StreamexTest {
     public void testIterateWithUnaryOperatorAndLimit() {
         assertThat(asList("a", "aa", "aaa", "aaaa")).isEqualTo( StreamEx.iterate("a", x -> x + "a").limit(4).toList());
     }
+
+    @Test
+    public void testEmptyList() {
+        assertThat(List.of()).isEqualTo( StreamEx.empty().toList());
+        assertThat(asList()).isEqualTo( StreamEx.empty().toList());
+    }
 }
