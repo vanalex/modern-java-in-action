@@ -39,5 +39,8 @@ public class Comparators {
         return (o1, o2) -> o2.compareTo(o1);
     }
 
+    public static Comparator<String> sizeOrder() {
+        return (s1, s2) -> s1.length() < s2.length() ? -1 : s1.length() > s2.length() ? 1 : s1.compareTo(s2);
 
+    }
 }
