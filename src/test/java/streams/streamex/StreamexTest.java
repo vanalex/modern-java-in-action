@@ -1,4 +1,4 @@
-package streamex;
+package streams.streamex;
 
 import chapter06.Dish;
 import one.util.streamex.StreamEx;
