@@ -26,4 +26,13 @@ class StreamTest {
         Stream<Integer> second = Stream.of(1, 2, 3);
         assertThat(StreamUtils.concat(first,second).collect(Collectors.toList())).isEqualTo(Stream.of("a", "b", "c", 1, 2, 3).collect(Collectors.toList()));
     }
+
+    @Test
+    void testThreeStreamConcatetantion(){
+        Stream<String> first = Stream.of("a", "b", "c");
+        Stream<String> second = Stream.of("1", "2", "3");
+        Stream<String> third = Stream.of("alpha", "beta", "gamma");
+        List<String> allThree = Stream.concat(Stream.concat(first, second), third).collect(Collectors.toList());
+        assertThat(allThree).isEqualTo(List.of("a", "b", "c", "1", "2", "3", "alpha", "beta", "gamma"));
+    }
 }
