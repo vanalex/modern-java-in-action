@@ -3,8 +3,6 @@ package streams.streams;
 import org.junit.jupiter.api.Test;
 import streams.StreamUtils;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
