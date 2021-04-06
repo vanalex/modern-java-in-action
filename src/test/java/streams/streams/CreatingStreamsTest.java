@@ -1,6 +1,7 @@
 package streams.streams;
 
 import org.junit.jupiter.api.Test;
+import streams.StreamUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,16 +17,14 @@ class CreatingStreamsTest {
 
     @Test
     void testCreateStringThroughStreamByJoining(){
-        String names = Stream.of("Gomez", "Morticia", "Wednesday", "Pugsley")
-                .collect(Collectors.joining(","));
+        CharSequence names = StreamUtils.of(Stream.of("Gomez", "Morticia", "Wednesday", "Pugsley"));
         assertThat(names).isEqualTo("Gomez,Morticia,Wednesday,Pugsley");
     }
 
     @Test
     void testCreateStringThroughStreamUsingArrayStreamByJoining(){
         String[] munsters = {"Herman", "Lily", "Eddie", "Marilyn", "Grandpa"};
-        String names = Arrays.stream(munsters)
-                .collect(Collectors.joining(","));
+        CharSequence names = StreamUtils.of(munsters);
         assertThat(names).isEqualTo("Herman,Lily,Eddie,Marilyn,Grandpa");
     }
 
@@ -39,7 +38,7 @@ class CreatingStreamsTest {
     }
 
     @Test
-    public void testStreamIterate(){
+    void testStreamIterate(){
         List<String> expected = List.of("2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-06-01", "2021-07-01", "2021-08-01",
                 "2021-09-01", "2021-10-01", "2021-11-01", "2021-12-01");
         LocalDate localDate = LocalDate.of(2021, Month.JANUARY, 1);
@@ -48,5 +47,11 @@ class CreatingStreamsTest {
                 .map(LocalDate::toString)
                 .collect(Collectors.toList());
         assertThat(dates).isEqualTo(expected);
+    }
+
+    @Test
+    void testJoinStringThroughStream(){
+        CharSequence names = StreamUtils.of(Arrays.asList("Greg", "Marcia", "Peter", "Jan", "Bobby", "Cindy"));
+        assertThat(names).isEqualTo("Greg,Marcia,Peter,Jan,Bobby,Cindy");
     }
 }
