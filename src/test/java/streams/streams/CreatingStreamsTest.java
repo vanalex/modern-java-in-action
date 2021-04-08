@@ -1,6 +1,8 @@
 package streams.streams;
 
 import org.junit.jupiter.api.Test;
+import streams.CharSequenceUtil;
+import streams.MapUtil;
 import streams.StreamUtils;
 
 import java.math.BigDecimal;
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,14 +20,14 @@ class CreatingStreamsTest {
 
     @Test
     void testCreateStringThroughStreamByJoining(){
-        CharSequence names = StreamUtils.of(Stream.of("Gomez", "Morticia", "Wednesday", "Pugsley"));
+        CharSequence names = CharSequenceUtil.of(Stream.of("Gomez", "Morticia", "Wednesday", "Pugsley"));
         assertThat(names).isEqualTo("Gomez,Morticia,Wednesday,Pugsley");
     }
 
     @Test
     void testCreateStringThroughStreamUsingArrayStreamByJoining(){
         String[] munsters = {"Herman", "Lily", "Eddie", "Marilyn", "Grandpa"};
-        CharSequence names = StreamUtils.of(munsters);
+        CharSequence names = CharSequenceUtil.of(munsters);
         assertThat(names).isEqualTo("Herman,Lily,Eddie,Marilyn,Grandpa");
     }
 
@@ -51,7 +54,14 @@ class CreatingStreamsTest {
 
     @Test
     void testJoinStringThroughStream(){
-        CharSequence names = StreamUtils.of(Arrays.asList("Greg", "Marcia", "Peter", "Jan", "Bobby", "Cindy"));
+        CharSequence names = CharSequenceUtil.of(Arrays.asList("Greg", "Marcia", "Peter", "Jan", "Bobby", "Cindy"));
         assertThat(names).isEqualTo("Greg,Marcia,Peter,Jan,Bobby,Cindy");
+    }
+
+    @Test
+    void testCreateMapFromStream(){
+        Map<? super CharSequence,? super Number> result = MapUtil.of(Stream.of("this", "is", "a", "list", "of", "strings"));
+        assertThat(result).isInstanceOf(Map.class);
+        assertThat(result.get("this")).isEqualTo(4);
     }
 }
