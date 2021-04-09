@@ -1,6 +1,7 @@
 package spark;
 
 import org.apache.spark.api.java.JavaRDD;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import static spark.SparkContextBuilder.SPARK_CONTEXT;
 public class SparkTest {
 
     @Test
+    @Disabled
     public void testSum(){
         List<Integer> data = Arrays.asList(1, 2, 3, 4, 5);
         JavaRDD<Integer> distData = SPARK_CONTEXT.parallelize(data);
@@ -20,6 +22,7 @@ public class SparkTest {
     }
 
     @Test
+    @Disabled
     public void testGetTextLength(){
         JavaRDD<String> lines =  SPARK_CONTEXT.textFile("src/main/resources/spark/data.txt");
         JavaRDD<Integer> lineLengths = lines.map(s -> s.length());
