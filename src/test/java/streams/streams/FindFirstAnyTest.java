@@ -2,8 +2,7 @@ package streams.streams;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -64,6 +63,16 @@ class FindFirstAnyTest {
                 .map(FindFirstAnyTest::delay)
                 .findAny();
         assertThat(any).isEqualTo(Optional.of(3));
+    }
+
+    @Test
+    void testParallel() {
+        Set<String> words = new HashSet<>();
+        words.addAll(Arrays.asList("this", "is", "a", "stream", "of", "strings"));
+        Optional<String> firstString = words.stream()
+                .parallel() // doesn't change anything in Java 8
+                .findFirst();
+        assertThat(firstString.get()).isEqualTo("this");
     }
 
     private static Integer delay(Integer n) {
