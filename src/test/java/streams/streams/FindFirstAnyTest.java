@@ -75,6 +75,15 @@ class FindFirstAnyTest {
         assertThat(firstString.get()).isEqualTo("this");
     }
 
+    @Test
+    void test(){
+     Optional<String> firstString = Stream.of("this", "is", "a", "stream", "of", "strings")
+                .unordered()
+                .findFirst();
+
+        assertThat(firstString.get()).isEqualTo("this");
+    }
+
     private static Integer delay(Integer n) {
         try {
             System.out.println(Thread.currentThread().getName());
