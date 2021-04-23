@@ -54,4 +54,15 @@ public class Strings {
 
         return new StringBuilder(str).reverse().toString();
     }
+
+    public static boolean containsOnlyDigits(String str) {
+
+        if (str == null || str.isBlank()) {
+            // or throw IllegalArgumentException
+            return false;
+        }
+
+        return !str.chars()
+                .anyMatch(n -> !Character.isDigit(n));
+    }
 }

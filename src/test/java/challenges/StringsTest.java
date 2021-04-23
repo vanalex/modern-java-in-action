@@ -17,6 +17,15 @@ class StringsTest {
     // 😍 ->\uD83D\uDE0D, Code Point: 128525
     private static final String TEXT_CP = TEXT + "😍 I love 💕 you Ӝ so much 💕 😍 🎼🎼🎼!";
 
+    private static final String ONLY_DIGITS = "45566336754493420932877387482372374982374823"
+            + "749823283974232237238472392309230923849023848234580383485342234287943943094"
+            + "234745374657346578465783467843653748654376837463847654382382938793287492326";
+
+    private static final String NOT_ONLY_DIGITS = "45566336754493420932877387482372374982374823"
+            + "749823283974232237238472392309230923849023848234580383485342234287943943094"
+            + "234745374657346578465783467843653748654376837463847654382382938793287492326A";
+
+
 
     @Test
     void testCountingChars(){
@@ -48,5 +57,17 @@ class StringsTest {
 
         String result = Strings.reverse(text);
         assertThat(result).isEqualTo(".ecneics retupmoc dna scimonoce ni eerged a rof drofnatS dednetta I ,gnitaudarg retfA .balimreF ro ,yrotarobaL rotareleccA lanoitaN imreF eht ta remmargorp retupmoc a sa dekrow I ,51 tA .gib kniht ot gnuoy oot reven er'uoy taht dna elbissop si gnihtyna taht em dewohs ,ymedacA ecneicS dna scitamehtaM sionillI eht ,loohcs hgih yM");
+    }
+
+    @Test
+    void testContainsOnlyDigitsShouldReturnTrue(){
+        boolean result = Strings.containsOnlyDigits(ONLY_DIGITS);
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void testContainsOnlyDigitsShouldReturnFalse(){
+        boolean result = Strings.containsOnlyDigits(NOT_ONLY_DIGITS);
+        assertThat(result).isFalse();
     }
 }
