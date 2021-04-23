@@ -44,4 +44,14 @@ public class Strings {
 
         return String.valueOf(Character.toChars(cp));
     }
+
+    public static String reverse(String str) {
+
+        if (str == null || str.isBlank()) {
+            // or throw IllegalArgumentException
+            return "";
+        }
+
+        return new StringBuilder(str).reverse().toString();
+    }
 }

@@ -36,4 +36,17 @@ class StringsTest {
         String result = Strings.firstNonRepeatedCharacter(text);
         assertThat(result).isEqualTo("'");
     }
+
+    @Test
+    void testReverse(){
+
+        String text = "My high school, the Illinois Mathematics and Science Academy, "
+                + "showed me that anything is possible and that you're never too young to think big. "
+                + "At 15, I worked as a computer programmer at the Fermi National Accelerator Laboratory, "
+                + "or Fermilab. After graduating, I attended Stanford for a degree in economics and "
+                + "computer science.";
+
+        String result = Strings.reverse(text);
+        assertThat(result).isEqualTo(".ecneics retupmoc dna scimonoce ni eerged a rof drofnatS dednetta I ,gnitaudarg retfA .balimreF ro ,yrotarobaL rotareleccA lanoitaN imreF eht ta remmargorp retupmoc a sa dekrow I ,51 tA .gib kniht ot gnuoy oot reven er'uoy taht dna elbissop si gnihtyna taht em dewohs ,ymedacA ecneicS dna scitamehtaM sionillI eht ,loohcs hgih yM");
+    }
 }
