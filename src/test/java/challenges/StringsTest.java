@@ -16,6 +16,7 @@ class StringsTest {
     // 🎼 -> \uD83C\uDFBC, Code Point: 127932
     // 😍 ->\uD83D\uDE0D, Code Point: 128525
     private static final String TEXT_CP = TEXT + "😍 I love 💕 you Ӝ so much 💕 😍 🎼🎼🎼!";
+    private static final String CHAR_TO_COUNT_CPS = "💕"; // Unicode: \uD83D\uDC95, Code Point: 128149
 
     private static final String ONLY_DIGITS = "45566336754493420932877387482372374982374823"
             + "749823283974232237238472392309230923849023848234580383485342234287943943094"
@@ -69,5 +70,21 @@ class StringsTest {
     void testContainsOnlyDigitsShouldReturnFalse(){
         boolean result = Strings.containsOnlyDigits(NOT_ONLY_DIGITS);
         assertThat(result).isFalse();
+    }
+
+    @Test
+    void testCountVowelsAndConsonants(){
+        String text = " ... Illinois Mathematics & Science Academy ... ";
+        Pair<Long, Long> result = Strings.countVowelsAndConsonants(text);
+        assertThat(result.getV()).isEqualTo(12L);
+        assertThat(result.getC()).isEqualTo(17L);
+
+    }
+
+    @Test
+    void testCountOcurrences(){
+        long count = Strings
+                .countOccurrencesOfACertainCharacter(TEXT_CP, CHAR_TO_COUNT_CPS);
+        assertThat(count).isEqualTo(2L);
     }
 }
