@@ -87,4 +87,27 @@ class StringsTest {
                 .countOccurrencesOfACertainCharacter(TEXT_CP, CHAR_TO_COUNT_CPS);
         assertThat(count).isEqualTo(2L);
     }
+
+    @Test
+    void testRemoveWhitespace(){
+        String result = Strings
+                .removeWhitespaces(TEXT);
+        assertThat(result).isEqualTo("Bestrong,befearless,bebeautiful.Andbelievethatanythingispossiblewhenyouhavetherightpeopletheretosupportyou.");
+    }
+
+    @Test
+    void testJoiner(){
+
+        String TEXT_1 = "Illinois";
+        String TEXT_2 = "Mathematics";
+        String TEXT_3 = "and";
+        String TEXT_4 = "Science";
+        String TEXT_5 = "Academy";
+
+        String result = Strings
+                .joinByDelimiter(' ', TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5);
+        assertThat(result).isEqualTo("Illinois Mathematics and Science Academy");
+    }
+
+
 }

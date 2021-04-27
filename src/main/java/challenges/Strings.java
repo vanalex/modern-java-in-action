@@ -96,4 +96,25 @@ public class Strings {
                 .filter(c -> c == codePoint)
                 .count();
     }
+
+    public static String removeWhitespaces(String str) {
+
+        if (str == null || str.isEmpty()) {
+            // or throw IllegalArgumentException
+            return "";
+        }
+
+        return str.replaceAll("\\s", "");
+    }
+
+    public static String joinByDelimiter(char delimiter, String... args) {
+
+        if (args == null || args.length == 0) {
+            // or throw IllegalArgumentException
+            return "";
+        }
+
+        return Arrays.stream(args, 0, args.length)
+                .collect(Collectors.joining(String.valueOf(delimiter)));
+    }
 }
