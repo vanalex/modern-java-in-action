@@ -3,6 +3,8 @@ package challenges;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.partitioningBy;
@@ -116,5 +118,19 @@ public class Strings {
 
         return Arrays.stream(args, 0, args.length)
                 .collect(Collectors.joining(String.valueOf(delimiter)));
+    }
+
+    public static Stream<String> permuteAndReturnStream(String str) {
+
+        if (str == null || str.isBlank()) {
+            return Stream.of("");
+        }
+
+        return IntStream.range(0, str.length())
+                .parallel()
+                .boxed()
+                .flatMap(i -> permuteAndReturnStream(str.substring(0, i) + str.substring(i + 1))
+                        .map(c -> str.charAt(i) + c)
+                );
     }
 }

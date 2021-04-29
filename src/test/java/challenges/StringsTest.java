@@ -3,6 +3,8 @@ package challenges;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -107,6 +109,14 @@ class StringsTest {
         String result = Strings
                 .joinByDelimiter(' ', TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5);
         assertThat(result).isEqualTo("Illinois Mathematics and Science Academy");
+    }
+
+    @Test
+    void testPermutations(){
+
+        Stream<String> result = Strings
+                .permuteAndReturnStream("hello");
+        assertThat(result.collect(Collectors.toList()).size()).isEqualTo(120);
     }
 
 
