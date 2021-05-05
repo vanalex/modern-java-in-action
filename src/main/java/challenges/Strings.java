@@ -133,4 +133,15 @@ public class Strings {
                         .map(c -> str.charAt(i) + c)
                 );
     }
+
+    public static boolean isPalindrome(String str) {
+
+        if (str == null || str.isBlank()) {
+            // or throw IllegalArgumentException
+            return false;
+        }
+
+        return IntStream.range(0, str.length() / 2)
+                .noneMatch(p -> str.charAt(p) != str.charAt(str.length() - p - 1));
+    }
 }

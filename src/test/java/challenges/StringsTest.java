@@ -28,7 +28,7 @@ class StringsTest {
             + "749823283974232237238472392309230923849023848234580383485342234287943943094"
             + "234745374657346578465783467843653748654376837463847654382382938793287492326A";
 
-
+    private static final String TEXT_PALINDROME = "ABCDEFEDCBA";
 
     @Test
     void testCountingChars(){
@@ -117,6 +117,11 @@ class StringsTest {
         Stream<String> result = Strings
                 .permuteAndReturnStream("hello");
         assertThat(result.collect(Collectors.toList()).size()).isEqualTo(120);
+    }
+
+    @Test
+    void testPalindrome(){
+        assertThat(Strings.isPalindrome(TEXT_PALINDROME)).isTrue();
     }
 
 
