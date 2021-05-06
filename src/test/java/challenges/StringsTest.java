@@ -30,6 +30,8 @@ class StringsTest {
 
     private static final String TEXT_PALINDROME = "ABCDEFEDCBA";
 
+    private static final String TEXT_WITH_DUPLICATES = "!ABCBA;C D E-D  D  DFA;";
+
     @Test
     void testCountingChars(){
         Map<String, Long> result = Strings.countDuplicateCharacters(TEXT);
@@ -124,5 +126,9 @@ class StringsTest {
         assertThat(Strings.isPalindrome(TEXT_PALINDROME)).isTrue();
     }
 
-
+    @Test
+    void testRemoveDuplicates() {
+        String result = Strings.removeDuplicates(TEXT_WITH_DUPLICATES);
+        assertThat(result).isEqualTo("!ABC; DE-F");
+    }
 }

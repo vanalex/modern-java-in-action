@@ -144,4 +144,16 @@ public class Strings {
         return IntStream.range(0, str.length() / 2)
                 .noneMatch(p -> str.charAt(p) != str.charAt(str.length() - p - 1));
     }
+
+    public static String removeDuplicates(String str) {
+
+        if (str == null || str.isEmpty()) {
+            // or throw IllegalArgumentException
+            return "";
+        }
+
+        return Arrays.asList(str.split("")).stream()
+                .distinct()
+                .collect(Collectors.joining());
+    }
 }
