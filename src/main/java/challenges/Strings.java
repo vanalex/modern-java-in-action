@@ -156,4 +156,23 @@ public class Strings {
                 .distinct()
                 .collect(Collectors.joining());
     }
+
+    public static String removeCharacter(String str, String ch) {
+
+        if (str == null || ch == null || str.isEmpty() || ch.isEmpty()) {
+            // or throw IllegalArgumentException
+            return "";
+        }
+
+        if (ch.codePointCount(0, ch.length()) != 1) {
+            return ""; // there is more than 1 Unicode character in the given String
+        }
+
+        int codePoint = ch.codePointAt(0);
+
+        return str.codePoints()
+                .filter(c -> c != codePoint)
+                .mapToObj(c -> String.valueOf(Character.toChars(c)))
+                .collect(Collectors.joining());
+    }
 }

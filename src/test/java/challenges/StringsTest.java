@@ -131,4 +131,13 @@ class StringsTest {
         String result = Strings.removeDuplicates(TEXT_WITH_DUPLICATES);
         assertThat(result).isEqualTo("!ABC; DE-F");
     }
+
+    @Test
+    void testRemoveChar() {
+
+        String TEXT_CP = "😍 I love 💕 you Ӝ so much 💕 😍";
+        String CHAR_CP = "Ӝ";   // Unicode: \u04DC, Code Point: 1244
+        String result = Strings.removeCharacter(TEXT_CP, CHAR_CP);
+        assertThat(result).isEqualTo("\uD83D\uDE0D I love \uD83D\uDC95 you  so much \uD83D\uDC95 \uD83D\uDE0D");
+    }
 }
