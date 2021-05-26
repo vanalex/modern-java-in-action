@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.partitioningBy;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.*;
 
 public class Strings {
 
@@ -27,7 +27,7 @@ public class Strings {
 
         return str.codePoints()
                 .mapToObj(c -> String.valueOf(Character.toChars(c)))
-                .collect(Collectors.groupingBy(c -> c, counting()));
+                .collect(groupingBy(c -> c, counting()));
     }
 
     public static String firstNonRepeatedCharacter(String str) {
@@ -39,7 +39,7 @@ public class Strings {
 
         Map<Integer, Long> chs = str.codePoints()
                 .mapToObj(cp -> cp)
-                .collect(Collectors.groupingBy(Function.identity(),
+                .collect(groupingBy(Function.identity(),
                         LinkedHashMap::new, counting()));
 
         int cp = chs.entrySet().stream()
@@ -174,5 +174,23 @@ public class Strings {
                 .filter(c -> c != codePoint)
                 .mapToObj(c -> String.valueOf(Character.toChars(c)))
                 .collect(Collectors.joining());
+    }
+
+    public static Pair<Character, Long> maxOccurenceCharacter(String str) {
+
+        if (str == null || str.isBlank()) {
+            // or throw IllegalArgumentException
+            return Pair.of(Character.MIN_VALUE, -1L);
+        }
+
+        return str.chars()
+                .filter(c -> Character.isWhitespace(c) == false) // ignoring space
+                .mapToObj(c -> (char) c)
+                .collect(groupingBy(c -> c, counting()))
+                .entrySet()
+                .stream()
+                .max(comparingByValue())
+                .map(p -> Pair.of(p.getKey(), p.getValue()))
+                .orElse(Pair.of(Character.MIN_VALUE, -1L));
     }
 }

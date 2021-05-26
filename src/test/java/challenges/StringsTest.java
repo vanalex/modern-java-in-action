@@ -140,4 +140,12 @@ class StringsTest {
         String result = Strings.removeCharacter(TEXT_CP, CHAR_CP);
         assertThat(result).isEqualTo("\uD83D\uDE0D I love \uD83D\uDC95 you  so much \uD83D\uDC95 \uD83D\uDE0D");
     }
+
+    @Test
+    void testMaxOcurrenceChar() {
+
+        Pair<Character, Long> result = Strings.maxOccurenceCharacter(TEXT);
+        assertThat(result.getV()).isEqualTo('e');
+        assertThat(result.getC()).isEqualTo(17L);
+    }
 }
