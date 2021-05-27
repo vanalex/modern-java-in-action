@@ -148,4 +148,13 @@ class StringsTest {
         assertThat(result.getV()).isEqualTo('e');
         assertThat(result.getC()).isEqualTo(17L);
     }
+
+    @Test
+    void testSortArray() {
+        String[] expected = {"three", "seven", "eight", "four", "five", "nine", "one", "two", "six", "ten"};
+        String[] strs = {"one", "two", "three", "four", "five",
+                "six", "seven", "eight", "nine", "ten"};
+        String[] result = Strings.sortArrayByLength(strs, Strings.Sort.DESC);
+        assertThat(result).isEqualTo(expected);
+    }
 }

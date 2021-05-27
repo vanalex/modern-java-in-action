@@ -193,4 +193,26 @@ public class Strings {
                 .map(p -> Pair.of(p.getKey(), p.getValue()))
                 .orElse(Pair.of(Character.MIN_VALUE, -1L));
     }
+
+    public static String[] sortArrayByLength(String[] strs, Sort direction) {
+
+        if (strs == null || direction == null || strs.length == 0) {
+            // or throw IllegalArgumentException
+            return new String[0];
+        }
+
+        if (direction.equals(Sort.ASC)) {
+            return Arrays.stream(strs)
+                    .sorted(Comparator.comparingInt(String::length))
+                    .toArray(String[]::new);
+        } else {
+            return Arrays.stream(strs)
+                    .sorted(Comparator.comparingInt(String::length).reversed())
+                    .toArray(String[]::new);
+        }
+    }
+
+    public enum Sort {
+        ASC, DESC
+    }
 }
