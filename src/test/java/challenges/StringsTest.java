@@ -157,4 +157,17 @@ class StringsTest {
         String[] result = Strings.sortArrayByLength(strs, Strings.Sort.DESC);
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    void testContains() {
+        final String TEXT = "My high school, the Illinois Mathematics and Science Academy, "
+                + "showed me that anything is possible and that you're never too young to think big. "
+                + "At 15, I worked as a computer programmer at the Fermi National Accelerator Laboratory, "
+                + "or Fermilab. After graduating, I attended Stanford for a degree in economics and "
+                + "computer science.";
+
+        final String SUBTEXT = "programmer";
+        boolean result = Strings.contains(TEXT,SUBTEXT);
+        assertThat(result).isTrue();
+    }
 }

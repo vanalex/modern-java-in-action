@@ -2,6 +2,7 @@ package challenges;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -210,6 +211,17 @@ public class Strings {
                     .sorted(Comparator.comparingInt(String::length).reversed())
                     .toArray(String[]::new);
         }
+    }
+
+    public static boolean contains(String text, String subtext) {
+
+        if (text == null || subtext == null
+                || text.isBlank() || subtext.isBlank()) {
+            // or throw IllegalArgumentException
+            return false;
+        }
+
+        return text.matches("(?i).*" + Pattern.quote(subtext) + ".*");
     }
 
     public enum Sort {
