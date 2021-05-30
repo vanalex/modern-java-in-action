@@ -170,4 +170,12 @@ class StringsTest {
         boolean result = Strings.contains(TEXT,SUBTEXT);
         assertThat(result).isTrue();
     }
+
+    @Test
+    void countStringInStringTest(){
+        final String STRING = "111111";
+        final String SUBSTRING = "11";
+        int count = Strings.countStringInString(STRING, SUBSTRING);
+        assertThat(count).isEqualTo(5);
+    }
 }
