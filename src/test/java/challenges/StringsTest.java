@@ -172,10 +172,10 @@ class StringsTest {
     }
 
     @Test
-    void testCountStringInString() {
-        final String TEXT = "111111";
-        final String SUBTEXT = "11";
-        int result = Strings.countStringInString(TEXT,SUBTEXT);
-        assertThat(result).isEqualTo(5);
+    void countStringInStringTest(){
+        final String STRING = "111111";
+        final String SUBSTRING = "11";
+        int count = Strings.countStringInString(STRING, SUBSTRING);
+        assertThat(count).isEqualTo(5);
     }
 }
