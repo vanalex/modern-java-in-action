@@ -2,6 +2,7 @@ package challenges;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -222,6 +223,29 @@ public class Strings {
         }
 
         return text.matches("(?i).*" + Pattern.quote(subtext) + ".*");
+    }
+
+    public static int countStringInString(String string, String toFind) {
+
+        if (string == null || toFind == null) {
+            throw new IllegalArgumentException("The given strings cannot be null");
+        }
+
+        if (string.isBlank() || toFind.isBlank()) {
+            return 0;
+        }
+
+        Pattern pattern = Pattern.compile(Pattern.quote(toFind));
+        Matcher matcher = pattern.matcher(string);
+
+        int position = 0;
+        int count = 0;
+        while (matcher.find(position)) {
+            position = matcher.start() + 1;
+            count++;
+        }
+
+        return count;
     }
 
     public enum Sort {
