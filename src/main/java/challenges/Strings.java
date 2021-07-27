@@ -248,6 +248,27 @@ public class Strings {
         return count;
     }
 
+    public static boolean isAnagram(String str1, String str2) {
+
+        if (str1 == null || str2 == null
+                || str1.isBlank() || str2.isBlank()) {
+            // throw IllegalArgumentException
+            return false;
+        }
+
+        str1 = str1.replaceAll("\\s", "").toLowerCase();
+        str2 = str2.replaceAll("\\s", "").toLowerCase();
+
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        return Arrays.equals(
+                str1.chars().sorted().toArray(),
+                str2.chars().sorted().toArray()
+        );
+    }
+
     public enum Sort {
         ASC, DESC
     }

@@ -32,6 +32,9 @@ class StringsTest {
 
     private static final String TEXT_WITH_DUPLICATES = "!ABCBA;C D E-D  D  DFA;";
 
+    private static final String TEXT1 = "hello world";
+    private static final String TEXT2 = "dh\n le rlo l wo";
+
     @Test
     void testCountingChars(){
         Map<String, Long> result = Strings.countDuplicateCharacters(TEXT);
@@ -177,5 +180,11 @@ class StringsTest {
         final String SUBSTRING = "11";
         int count = Strings.countStringInString(STRING, SUBSTRING);
         assertThat(count).isEqualTo(5);
+    }
+
+    @Test
+    void testAnagram(){
+        boolean result = Strings.isAnagram(TEXT1, TEXT2);
+        assertThat(result).isTrue();
     }
 }
