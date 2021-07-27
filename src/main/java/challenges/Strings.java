@@ -53,7 +53,7 @@ public class Strings {
         return String.valueOf(Character.toChars(cp));
     }
 
-    public static String reverse(String str) {
+    public static String reverseWord(String str) {
 
         if (str == null || str.isBlank()) {
             // or throw IllegalArgumentException

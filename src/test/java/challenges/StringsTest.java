@@ -60,7 +60,7 @@ class StringsTest {
                 + "or Fermilab. After graduating, I attended Stanford for a degree in economics and "
                 + "computer science.";
 
-        String result = Strings.reverse(text);
+        String result = Strings.reverseWord(text);
         assertThat(result).isEqualTo(".ecneics retupmoc dna scimonoce ni eerged a rof drofnatS dednetta I ,gnitaudarg retfA .balimreF ro ,yrotarobaL rotareleccA lanoitaN imreF eht ta remmargorp retupmoc a sa dekrow I ,51 tA .gib kniht ot gnuoy oot reven er'uoy taht dna elbissop si gnihtyna taht em dewohs ,ymedacA ecneicS dna scitamehtaM sionillI eht ,loohcs hgih yM");
     }
 
