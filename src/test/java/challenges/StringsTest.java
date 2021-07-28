@@ -35,6 +35,8 @@ class StringsTest {
     private static final String TEXT1 = "hello world";
     private static final String TEXT2 = "dh\n le rlo l wo";
 
+    private static final String TEXT_TO_CONCAT = "hello";
+
     @Test
     void testCountingChars(){
         Map<String, Long> result = Strings.countDuplicateCharacters(TEXT);
@@ -186,5 +188,11 @@ class StringsTest {
     void testAnagram(){
         boolean result = Strings.isAnagram(TEXT1, TEXT2);
         assertThat(result).isTrue();
+    }
+
+    @Test
+    void testConcatStringNTimes() {
+        String result = Strings.concatRepeat(TEXT_TO_CONCAT, 5);
+        assertThat(result).isEqualTo("hellohellohellohellohello");
     }
 }
