@@ -292,6 +292,59 @@ public class Strings {
         return sb.toString();
     }
 
+    public static String longestCommonPrefix(String[] strs) {
+
+        if (strs == null || strs.length == 0) {
+            // or throw IllegalArgumentException
+            return "";
+        }
+
+        if (strs.length == 1) {
+            return strs[0];
+        }
+
+        int minStr = Integer.MAX_VALUE;
+        for (String str : strs) {
+            if (str.length() < minStr) {
+                minStr = str.length();
+            }
+        }
+
+        String result = "";
+        int left = 0;
+        int right = minStr;
+        while (left < right) {
+
+            int middle = left + (right - left) / 2;
+
+            if (isPrefixInAll(strs, left, middle)) {
+
+                result = result + strs[0].substring(left, middle + 1);
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+
+        return result;
+    }
+
+    private static boolean isPrefixInAll(String strs[], int start, int end) {
+
+        String str = strs[0];
+
+        for (String currentStr : strs) {
+            for (int j = start; j <= end; j++) {
+                if (currentStr.charAt(j) != str.charAt(j)) {
+
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public enum Sort {
         ASC, DESC
     }

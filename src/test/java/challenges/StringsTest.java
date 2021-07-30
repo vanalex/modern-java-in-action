@@ -37,6 +37,8 @@ class StringsTest {
 
     private static final String TEXT_TO_CONCAT = "hello";
 
+    private static String[] texts = {"abc", "abcd", "abcde", "ab", "abcd", "abcdef"};
+
     @Test
     void testCountingChars(){
         Map<String, Long> result = Strings.countDuplicateCharacters(TEXT);
@@ -194,5 +196,11 @@ class StringsTest {
     void testConcatStringNTimes() {
         String result = Strings.concatRepeat(TEXT_TO_CONCAT, 5);
         assertThat(result).isEqualTo("hellohellohellohellohello");
+    }
+
+    @Test
+    void testLongestCommonPrefix() {
+        String resultV2 = Strings.longestCommonPrefix(texts);
+        assertThat(resultV2).isEqualTo("ab");
     }
 }
