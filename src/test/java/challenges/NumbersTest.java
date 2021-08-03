@@ -23,4 +23,28 @@ class NumbersTest {
         int result = Numbers.returnMinimumByBinnaryOperator(5,3);
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    void testSumClassicWay(){
+        int result = Numbers.sumClassicWay(5, 3);
+        assertThat(result).isEqualTo(8);
+    }
+
+    @Test
+    void testSumWithInteger(){
+        int result = Numbers.sumWithInteger(5, 3);
+        assertThat(result).isEqualTo(8);
+    }
+
+    @Test
+    void testSumWithMath(){
+        int result = Numbers.sumWithMath(5, 3);
+        assertThat(result).isEqualTo(8);
+    }
+
+    @Test
+    void testSumWithOperator(){
+        int result = Numbers.sumWithOperator(5, 3);
+        assertThat(result).isEqualTo(8);
+    }
 }
