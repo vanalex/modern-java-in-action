@@ -10,7 +10,7 @@ public class Pair<V, C> {
         this.c = c;
     }
 
-    static <V, C> Pair<V, C> of(V vowels, C consonants) {
+    public static <V, C> Pair<V, C> of(V vowels, C consonants) {
         return new Pair<>(vowels, consonants);
     }
 
