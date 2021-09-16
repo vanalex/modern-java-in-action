@@ -8,24 +8,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class NumbersTest {
 
     @Test
-    void testreturnMinimumByInteger(){
-        int result = Numbers.returnMinimumByInteger(5,3);
-        assertThat(result).isEqualTo(3);
-    }
-
-    @Test
-    void testreturnMinimumByMath(){
-        int result = Numbers.returnMinimumByMath(5,3);
-        assertThat(result).isEqualTo(3);
-    }
-
-    @Test
-    void testreturnMinimumByBinaryOperator(){
-        int result = Numbers.returnMinimumByBinnaryOperator(5,3);
-        assertThat(result).isEqualTo(3);
-    }
-
-    @Test
     void testSumClassicWay(){
         int result = Numbers.sumClassicWay(5, 3);
         assertThat(result).isEqualTo(8);
@@ -50,20 +32,32 @@ class NumbersTest {
     }
 
     @Test
-    void testreturnMaximumByInteger(){
-        int result = Numbers.returnMaximumByInteger(5,3);
-        assertThat(result).isEqualTo(5);
+    void testMinWithInteger(){
+        assertThat(Numbers.minWithInteger(5,3)).isEqualTo(3);
     }
 
     @Test
-    void testreturnMaximumByMath(){
-        int result = Numbers.returnMaximumByMath(5,3);
-        assertThat(result).isEqualTo(5);
+    void testMinWithMath(){
+        assertThat(Numbers.minWithMath(5,3)).isEqualTo(3);
     }
 
     @Test
-    void testreturnMaximumByBinaryOperator(){
-        int result = Numbers.returnMaximumByBinnaryOperator(5,3);
-        assertThat(result).isEqualTo(5);
+    void testMaxWithInteger(){
+        assertThat(Numbers.maxWithInteger(5,3)).isEqualTo(5);
+    }
+
+    @Test
+    void testMaxWithMath(){
+        assertThat(Numbers.maxWithMath(5,3)).isEqualTo(5);
+    }
+
+    @Test
+    void testMaxWithBinaryOperator(){
+        assertThat(Numbers.maxWithBinaryOperator(5,3)).isEqualTo(5);
+    }
+
+    @Test
+    void testMinWithBinaryOperator(){
+        assertThat(Numbers.minWithBinaryOperator(5,3)).isEqualTo(3);
     }
 }
