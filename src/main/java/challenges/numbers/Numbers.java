@@ -1,4 +1,4 @@
-package challenges;
+package challenges.numbers;
 
 import java.util.function.BinaryOperator;
 
@@ -16,6 +16,18 @@ public class Numbers {
 
     public static int returnMinimumByBinnaryOperator(int num1, int num2){
         return BinaryOperator.minBy(Integer::compare).apply(num1, num2);
+    }
+
+    public static int returnMaximumByInteger(int num1, int num2){
+        return Integer.max(num1, num2);
+    }
+
+    public static int returnMaximumByMath(int num1, int num2){
+        return Math.max(num1, num2);
+    }
+
+    public static int returnMaximumByBinnaryOperator(int num1, int num2){
+        return BinaryOperator.maxBy(Integer::compare).apply(num1, num2);
     }
 
     public static int sumClassicWay(int num1, int num2){

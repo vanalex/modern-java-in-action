@@ -1,5 +1,6 @@
 package challenges;
 
+import challenges.numbers.Numbers;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -46,5 +47,23 @@ class NumbersTest {
     void testSumWithOperator(){
         int result = Numbers.sumWithOperator(5, 3);
         assertThat(result).isEqualTo(8);
+    }
+
+    @Test
+    void testreturnMaximumByInteger(){
+        int result = Numbers.returnMaximumByInteger(5,3);
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void testreturnMaximumByMath(){
+        int result = Numbers.returnMaximumByMath(5,3);
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void testreturnMaximumByBinaryOperator(){
+        int result = Numbers.returnMaximumByBinnaryOperator(5,3);
+        assertThat(result).isEqualTo(5);
     }
 }
