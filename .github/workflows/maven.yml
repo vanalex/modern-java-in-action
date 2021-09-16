@@ -25,12 +25,14 @@ jobs:
           restore-keys: build-${{ runner.os }}-maven-
 
       - name: Install JDK
-        uses: AdoptOpenJDK/install-jdk@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
         with:
-          version: '15'
+          distribution: 'temurin'
+          version: '16'
           architecture: x64
           impl: hotspot
-          targets: 'JDK_8;JAVA_HOME'
+          #targets: 'JDK_8;JAVA_HOME'
 
       - name: Install Dependencies
         run: >
