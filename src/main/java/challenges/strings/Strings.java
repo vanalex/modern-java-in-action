@@ -1,4 +1,6 @@
-package challenges;
+package challenges.strings;
+
+import challenges.Pair;
 
 import java.util.*;
 import java.util.function.Function;

@@ -1,5 +1,6 @@
-package challenges;
+package challenges.strings;
 
+import challenges.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
