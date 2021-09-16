@@ -25,8 +25,7 @@ jobs:
           restore-keys: build-${{ runner.os }}-maven-
 
       - name: Install JDK
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
+        uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
           version: '16'
