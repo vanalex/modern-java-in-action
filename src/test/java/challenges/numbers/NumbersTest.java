@@ -1,4 +1,4 @@
-package challenges;
+package challenges.numbers;
 
 import challenges.numbers.Numbers;
 import org.junit.jupiter.api.Test;
