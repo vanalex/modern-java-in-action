@@ -27,4 +27,10 @@ class ObjectsTest {
     void testObjectsNullability(){
         assertThrows(NullPointerException.class, () -> new Car(null, Color.BLUE));
     }
+
+    @Test
+    void testObjectsNullabilityFields(){
+        Car car = new Car("Seat", Color.GREEN);
+        assertThrows(IllegalArgumentException.class, () -> car.assignDriver(null, null));
+    }
 }
