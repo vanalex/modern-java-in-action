@@ -6,8 +6,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ObjectsTest {
 
@@ -32,5 +31,12 @@ class ObjectsTest {
     void testObjectsNullabilityFields(){
         Car car = new Car("Seat", Color.GREEN);
         assertThrows(IllegalArgumentException.class, () -> car.assignDriver(null, null));
+    }
+
+    @Test
+    void testImmutableObject(){
+        ImmutablePoint point = new ImmutablePoint(2, 3);
+        assertEquals(point.getX(), 2);
+        assertEquals(point.getY(), 3);
     }
 }
