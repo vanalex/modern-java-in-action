@@ -39,4 +39,29 @@ class ObjectsTest {
         assertEquals(point.getX(), 2);
         assertEquals(point.getY(), 3);
     }
+
+    @Test
+    void checkIndexTest() {
+        var index = 1;
+        var length = 2;
+        var actual = java.util.Objects.checkIndex(index, length);
+        assertEquals(index, actual);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            java.util.Objects.checkIndex(2,2);
+        });
+    }
+
+    @Test
+    void checkFromToIndexTest() {
+        var fromIndex = 0;
+        var toIndex = 0;
+        var length = 4;
+        var actual = java.util.Objects.checkFromToIndex(fromIndex, toIndex, length);
+        assertEquals(fromIndex, actual);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            java.util.Objects.checkFromIndexSize(0, 5, 4);
+        });
+    }
 }
