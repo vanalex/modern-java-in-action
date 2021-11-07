@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
-          java-version: '16'
+          java-version: '17'
           architecture: x64
           impl: hotspot
           #targets: 'JDK_8;JAVA_HOME'

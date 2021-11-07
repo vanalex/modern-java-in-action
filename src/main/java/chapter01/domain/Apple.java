@@ -1,4 +1,6 @@
-package chapter01;
+package chapter01.domain;
+
+import java.util.Objects;
 
 public class Apple {
 
@@ -32,4 +34,16 @@ public class Apple {
         return String.format("Apple{color='%s', weight=%d}", color, weight);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Apple apple = (Apple) o;
+        return weight == apple.weight && Objects.equals(color, apple.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(weight, color);
+    }
 }
