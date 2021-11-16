@@ -4,6 +4,7 @@ import chapter04.Dish;
 import chapter04.Dish.Type;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class TestFixture<T> {
 
@@ -22,4 +23,8 @@ public class TestFixture<T> {
         new Dish("prawns", false, 400, Type.FISH),
         new Dish("salmon", false, 450, Type.FISH)
     );
+
+    public static <T> Stream<T> createStream(T...values){
+        return Stream.of(values);
+    }
 }
