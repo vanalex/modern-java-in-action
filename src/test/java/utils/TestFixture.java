@@ -24,6 +24,13 @@ public class TestFixture<T> {
         new Dish("salmon", false, 450, Type.FISH)
     );
 
+    public static List<Dish> specialMenu = Arrays.asList(
+        new Dish("season fruit", true, 120, Dish.Type.OTHER),
+        new Dish("prawns", false, 300, Dish.Type.FISH),
+        new Dish("rice", true, 350, Dish.Type.OTHER),
+        new Dish("chicken", false, 400, Dish.Type.MEAT),
+        new Dish("french fries", true, 530, Dish.Type.OTHER));
+
     public static <T> Stream<T> createStream(T...values){
         return Stream.of(values);
     }
