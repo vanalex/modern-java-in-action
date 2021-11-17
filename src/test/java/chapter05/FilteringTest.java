@@ -42,8 +42,11 @@ class FilteringTest {
 
   @Test
   void menuTest2(){
-    List<Dish> slicedMenu2 = TestFixture.specialMenu.stream()
-        .takeWhile(dish -> dish.getCalories() < 320)
+    List<Dish> slicedMenu = TestFixture.specialMenu.stream()
+        .takeWhile(dish -> dish.getCalories() > 300)
         .collect(toList());
+
+    Assertions.assertThat(slicedMenu.get(0).getCalories()).isGreaterThan(300);
+
   }
 }
