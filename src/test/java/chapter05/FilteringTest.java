@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import chapter04.Dish;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.TestFixture;
@@ -48,5 +49,16 @@ class FilteringTest {
 
     Assertions.assertThat(slicedMenu.get(0).getCalories()).isGreaterThan(300);
 
+  }
+
+  @Test
+  void filteringUniqueElementsTest(){
+    // Filtering unique elements
+    List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
+    List<Integer> result = numbers.stream()
+        .filter(i -> i % 2 == 0)
+        .distinct()
+        .collect(Collectors.toList());
+    Assertions.assertThat(result).isEqualTo(List.of(2, 4));
   }
 }
