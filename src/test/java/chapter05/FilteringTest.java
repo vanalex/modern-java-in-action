@@ -42,16 +42,6 @@ class FilteringTest {
   }
 
   @Test
-  void menuTest2(){
-    List<Dish> slicedMenu = TestFixture.specialMenu.stream()
-        .takeWhile(dish -> dish.getCalories() > 300)
-        .collect(toList());
-
-    Assertions.assertThat(slicedMenu.get(0).getCalories()).isGreaterThan(300);
-
-  }
-
-  @Test
   void filteringUniqueElementsTest(){
     // Filtering unique elements
     List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
