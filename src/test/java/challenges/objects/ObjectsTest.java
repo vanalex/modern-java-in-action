@@ -34,13 +34,6 @@ class ObjectsTest {
     }
 
     @Test
-    void testImmutableObject(){
-        ImmutablePoint point = new ImmutablePoint(2, 3);
-        assertEquals(point.getX(), 2);
-        assertEquals(point.getY(), 3);
-    }
-
-    @Test
     void checkIndexTest() {
         var index = 1;
         var length = 2;

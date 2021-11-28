@@ -1,4 +1,4 @@
-package challenges.objects;
+package challenges.immutability;
 
 public final class ImmutablePoint {
     private int x;
