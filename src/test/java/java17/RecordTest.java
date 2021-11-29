@@ -1,63 +1,59 @@
 package java17;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class RecordTest {
+class RecordTest {
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     RecordId recordId01 = new RecordId("r-01");
     RecordId recordId02 = new RecordId("r-02");
     RecordId recordId03 = new RecordId("r-01");
     RecordId recordId04 = new RecordId("r-01");
     //reflective
-    assertTrue(recordId01.equals(recordId01));
+    assertThat(recordId01).isEqualTo(recordId01);
     //symmetric
-    assertTrue(recordId01.equals(recordId03));
-    assertTrue(recordId03.equals(recordId01));
+    assertThat(recordId01).isEqualTo(recordId03);
+    assertThat(recordId03).isEqualTo(recordId01);
     //transitive
-    assertTrue(recordId01.equals(recordId03));
-    assertTrue(recordId03.equals(recordId04));
-    assertTrue(recordId03.equals(recordId01));
+    assertThat(recordId01).isEqualTo(recordId03);
+    assertThat(recordId03).isEqualTo(recordId04);
+    assertThat(recordId03).isEqualTo(recordId01);
     //consistent
-    assertTrue(recordId01.equals(recordId01));
-    assertTrue(recordId01.equals(recordId03));
+    assertThat(recordId01).isEqualTo(recordId01);
+    assertThat(recordId01).isEqualTo(recordId03);
     //null
-    assertFalse(recordId01.equals(null));
-    assertFalse(recordId02.equals(null));
-    assertFalse(recordId03.equals(null));
+    assertThat(recordId01).isNotEqualTo(null);
+    assertThat(recordId02).isNotEqualTo(null);
+    assertThat(recordId03).isNotEqualTo(null);
     //negative
-    assertFalse(recordId01.equals(recordId02));
-    assertFalse(recordId02.equals(recordId01));
+    assertThat(recordId01).isNotEqualTo(recordId02);
+    assertThat(recordId02).isNotEqualTo(recordId01);
   }
 
   @Test
-  public void testHashCode() {
+  void testHashCode() {
     RecordId recordId01 = new RecordId("r-01");
     RecordId recordId02 = new RecordId("r-02");
     RecordId recordId03 = new RecordId("r-01");
-    assertEquals(recordId01.hashCode(), recordId01.hashCode());
-    assertEquals(recordId01.hashCode(), recordId03.hashCode());
-    assertNotEquals(recordId01.hashCode(), recordId02.hashCode());
+    assertThat(recordId01.hashCode()).hasSameHashCodeAs(recordId01.hashCode());
+    assertThat(recordId01.hashCode()).hasSameHashCodeAs(recordId03.hashCode());
+    assertThat(recordId01.hashCode()).isNotEqualTo(recordId02.hashCode());
   }
 
   @Test
-  public void testToString() {
+  void testToString() {
     RecordId recordId = new RecordId("r-01");
-    assertNotNull(recordId.toString());
+    assertThat(recordId.toString()).isNotNull();
   }
 
   @Test
-  public void testRecordId() {
+  void testRecordId() {
     RecordId recordId = new RecordId("r-01");
-    assertNotNull(recordId.id());
-    assertEquals(recordId.id(), "r-01");
+    assertThat(recordId.id()).isNotNull();
+    assertThat(recordId.id()).isEqualTo("r-01");
   }
 
 }
