@@ -1,5 +1,6 @@
-package challenges;
+package challenges.reflection;
 
+import challenges.Person;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
