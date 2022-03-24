@@ -2,6 +2,7 @@ package collections;
 
 import domain.Person;
 import domain.Pet;
+import domain.PetType;
 import org.assertj.core.api.Assertions;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
@@ -24,6 +25,18 @@ class MutableTest extends AbstractBaseTest{
 
     MutableList<String> names = pets.collect(Pet::getName);
 
-    Assertions.assertThat("Tabby").isEqualTo(names.makeString());
+    Assertions.assertThat(names.makeString()).isEqualTo("Tabby");
+  }
+
+  @Test
+  void getPeopleWithCats() {
+    MutableList<Person> peopleWithCats = this.people.select(person -> person.hasPet(PetType.CAT));
+    Assertions.assertThat(peopleWithCats.size()).isEqualTo(2);
+  }
+
+  @Test
+  void getPeopleWithoutCats() {
+    MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));
+    Assertions.assertThat(peopleWithoutCats.size()).isEqualTo(6);
   }
 }
