@@ -4,6 +4,7 @@ import domain.Person;
 import domain.Pet;
 import domain.PetType;
 import org.assertj.core.api.Assertions;
+import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
 import org.junit.jupiter.api.Test;
@@ -38,5 +39,18 @@ class MutableTest extends AbstractBaseTest{
   void getPeopleWithoutCats() {
     MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));
     Assertions.assertThat(peopleWithoutCats.size()).isEqualTo(6);
+  }
+
+  @Test
+  void doAnyPeopleHaveCats(){
+    Predicate<Person> predicate = person -> person.hasPet(PetType.CAT);
+    Assertions.assertThat(this.people.anySatisfy(predicate)).isTrue();
+  }
+
+  @Test
+  void doAllPeopleHavePets() {
+    Predicate<Person> predicate = Person::isPetPerson;
+    boolean result = this.people.allSatisfy(predicate); //replace with a method call send to this.people that checks if all people have pets
+    Assertions.assertThat(result).isFalse();
   }
 }
