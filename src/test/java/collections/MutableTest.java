@@ -50,7 +50,7 @@ class MutableTest extends AbstractBaseTest{
   @Test
   void doAllPeopleHavePets() {
     Predicate<Person> predicate = Person::isPetPerson;
-    boolean result = this.people.allSatisfy(predicate); //replace with a method call send to this.people that checks if all people have pets
+    boolean result = this.people.allSatisfy(predicate);
     Assertions.assertThat(result).isFalse();
   }
 }
