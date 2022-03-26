@@ -53,4 +53,18 @@ class MutableTest extends AbstractBaseTest{
     boolean result = this.people.allSatisfy(predicate);
     Assertions.assertThat(result).isFalse();
   }
+
+  @Test
+  void howManyPeopleHaveCats() {
+    int count = 2;
+    int result = this.people.count(person -> person.hasPet(PetType.CAT));
+    Assertions.assertThat( count).isEqualTo(result);
+  }
+
+  @Test
+  void findMarySmith() {
+    Person result = this.people.detectWith(Person::named, "Mary Smith");
+    Assertions.assertThat(result.getFirstName()).isEqualTo("Mary");
+    Assertions.assertThat(result.getLastName()).isEqualTo("Smith");
+  }
 }
