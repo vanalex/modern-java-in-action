@@ -4,9 +4,12 @@ import domain.Person;
 import domain.Pet;
 import domain.PetType;
 import org.assertj.core.api.Assertions;
+import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.factory.Lists;
+import org.eclipse.collections.api.factory.Sets;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.set.MutableSet;
 import org.junit.jupiter.api.Test;
 
 class MutableTest extends AbstractBaseTest{
@@ -66,5 +69,53 @@ class MutableTest extends AbstractBaseTest{
     Person result = this.people.detectWith(Person::named, "Mary Smith");
     Assertions.assertThat(result.getFirstName()).isEqualTo("Mary");
     Assertions.assertThat(result.getLastName()).isEqualTo("Smith");
+  }
+
+  @Test
+  void getPeopleWithPets() {
+    MutableList<Person> petPeople = this.people.select(Person::isPetPerson);
+    Assertions.assertThat(petPeople.size()).isEqualTo(7);
+  }
+
+  @Test
+  void getAllPetTypesOfAllPeople() {
+    Function<Person, Iterable<PetType>> function = Person::getPetTypes;
+    MutableSet<PetType> petTypes = this.people.flatCollect(function, Sets.mutable.empty());
+
+    var expected =
+        Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE);
+    Assertions.assertThat(expected).isEqualTo(petTypes);
+  }
+
+  @Test
+  void doAnyPeopleHaveCatsRefactor() {
+    boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
+    Assertions.assertThat(peopleHaveCatsLambda).isTrue();
+
+    boolean peopleHaveCatsMethodRef = this.people.anySatisfyWith(Person::hasPet, PetType.CAT);
+    Assertions.assertThat(peopleHaveCatsMethodRef).isTrue();
+  }
+
+  @Test
+  void doAllPeopleHaveCatsRefactor() {
+    boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet(PetType.CAT));
+    Assertions.assertThat(peopleHaveCatsLambda).isFalse();
+
+    boolean peopleHaveCatsMethodRef = this.people.allSatisfyWith(Person::hasPet, PetType.CAT);
+    Assertions.assertThat(peopleHaveCatsMethodRef).isFalse();
+  }
+
+  @Test
+  void getPeopleWithCatsRefactor() {
+    MutableList<Person> peopleWithCatsMethodRef = this.people.selectWith(Person::hasPet, PetType.CAT);
+
+    Assertions.assertThat(peopleWithCatsMethodRef.size()).isEqualTo(2);
+  }
+
+  @Test
+  public void getPeopleWithoutCatsRefactor() {
+    MutableList<Person> peopleWithoutCatsMethodRef = this.people.rejectWith(Person::hasPet, PetType.CAT);
+
+    Assertions.assertThat(peopleWithoutCatsMethodRef.size()).isEqualTo(6);
   }
 }
