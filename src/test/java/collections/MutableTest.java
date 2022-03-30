@@ -4,6 +4,7 @@ import domain.Person;
 import domain.Pet;
 import domain.PetType;
 import org.assertj.core.api.Assertions;
+import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.factory.Lists;
@@ -113,9 +114,22 @@ class MutableTest extends AbstractBaseTest{
   }
 
   @Test
-  public void getPeopleWithoutCatsRefactor() {
+  void getPeopleWithoutCatsRefactor() {
     MutableList<Person> peopleWithoutCatsMethodRef = this.people.rejectWith(Person::hasPet, PetType.CAT);
 
     Assertions.assertThat(peopleWithoutCatsMethodRef.size()).isEqualTo(6);
+  }
+
+  @Test
+  void getCountsByPetType() {
+    MutableBag<PetType> counts =
+        this.people.countByEach(Person::getPetTypes);
+
+    Assertions.assertThat(counts.occurrencesOf(PetType.CAT)).isEqualTo(2);
+    Assertions.assertThat(counts.occurrencesOf(PetType.DOG)).isEqualTo(2);
+    Assertions.assertThat(counts.occurrencesOf(PetType.HAMSTER)).isEqualTo(2);
+    Assertions.assertThat(counts.occurrencesOf(PetType.SNAKE)).isEqualTo(1);
+    Assertions.assertThat(counts.occurrencesOf(PetType.TURTLE)).isEqualTo(1);
+    Assertions.assertThat(counts.occurrencesOf(PetType.BIRD)).isEqualTo(1);
   }
 }
