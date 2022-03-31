@@ -10,6 +10,7 @@ import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.factory.Sets;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.api.set.MutableSet;
 import org.junit.jupiter.api.Test;
 
@@ -131,5 +132,13 @@ class MutableTest extends AbstractBaseTest{
     Assertions.assertThat(counts.occurrencesOf(PetType.SNAKE)).isEqualTo(1);
     Assertions.assertThat(counts.occurrencesOf(PetType.TURTLE)).isEqualTo(1);
     Assertions.assertThat(counts.occurrencesOf(PetType.BIRD)).isEqualTo(1);
+  }
+
+  @Test
+  void getPeopleByLastName() {
+    MutableListMultimap<String, Person> lastNamesToPeople =
+        this.people.groupBy(Person::getLastName);
+
+    Assertions.assertThat(lastNamesToPeople.get("Smith").size()).isEqualTo(3);
   }
 }
