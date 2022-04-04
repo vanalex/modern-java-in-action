@@ -1,7 +1,7 @@
 package collections;
 
-import domain.Person;
-import domain.PetType;
+import collections.domain.Person;
+import collections.domain.PetType;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
 import org.junit.jupiter.api.BeforeEach;

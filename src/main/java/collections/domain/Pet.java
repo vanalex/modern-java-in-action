@@ -1,4 +1,4 @@
-package domain;
+package collections.domain;
 
 public class Pet {
   private final PetType type;

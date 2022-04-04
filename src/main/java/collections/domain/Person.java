@@ -1,4 +1,4 @@
-package domain;
+package collections.domain;
 
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.factory.Lists;

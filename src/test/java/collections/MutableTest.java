@@ -1,8 +1,8 @@
 package collections;
 
-import domain.Person;
-import domain.Pet;
-import domain.PetType;
+import collections.domain.Person;
+import collections.domain.Pet;
+import collections.domain.PetType;
 import org.assertj.core.api.Assertions;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
