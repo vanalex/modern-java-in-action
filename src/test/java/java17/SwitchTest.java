@@ -3,7 +3,7 @@ package java17;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class SwitchTest {
+class SwitchTest {
 
   @Test
   void testTypePatternSwitch(){
@@ -21,7 +21,7 @@ public class SwitchTest {
   @Test
   void testSwitchMultipleValues(){
     String result = developerRating(0);
-    Assertions.assertEquals(result, "open source contributor");
+    Assertions.assertEquals("open source contributor", result);
   }
 
   @Test
@@ -35,6 +35,13 @@ public class SwitchTest {
     org.assertj.core.api.Assertions.assertThat(result).isEqualTo(1.0);
   }
 
+  @Test
+  void testNullSwitch(){
+    String result = testFooBar(null);
+
+    org.assertj.core.api.Assertions.assertThat(result).isEqualTo("Oops");
+  }
+
   String developerRating( int numberOfChildren ) {
     return switch (numberOfChildren) {
       case 0 -> "open source contributor";
@@ -45,6 +52,14 @@ public class SwitchTest {
           throw new IndexOutOfBoundsException( numberOfChildren );
         yield "manager";
       }
+    };
+  }
+
+  private static String testFooBar(String s) {
+    return switch (s) {
+      case null         -> "Oops";
+      case "Foo", "Bar" -> "Great";
+      default           -> "Ok";
     };
   }
 }
