@@ -11,7 +11,9 @@ import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.factory.Sets;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
+import org.eclipse.collections.api.multimap.set.MutableSetMultimap;
 import org.eclipse.collections.api.set.MutableSet;
+import org.eclipse.collections.impl.factory.Multimaps;
 import org.junit.jupiter.api.Test;
 
 class MutableTest extends AbstractBaseTest{
@@ -37,13 +39,13 @@ class MutableTest extends AbstractBaseTest{
   @Test
   void getPeopleWithCats() {
     MutableList<Person> peopleWithCats = this.people.select(person -> person.hasPet(PetType.CAT));
-    Assertions.assertThat(peopleWithCats.size()).isEqualTo(2);
+    Assertions.assertThat(peopleWithCats).hasSize(2);
   }
 
   @Test
   void getPeopleWithoutCats() {
     MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));
-    Assertions.assertThat(peopleWithoutCats.size()).isEqualTo(6);
+    Assertions.assertThat(peopleWithoutCats).hasSize(6);
   }
 
   @Test
@@ -76,7 +78,7 @@ class MutableTest extends AbstractBaseTest{
   @Test
   void getPeopleWithPets() {
     MutableList<Person> petPeople = this.people.select(Person::isPetPerson);
-    Assertions.assertThat(petPeople.size()).isEqualTo(7);
+    Assertions.assertThat(petPeople).hasSize(7);
   }
 
   @Test
@@ -111,14 +113,14 @@ class MutableTest extends AbstractBaseTest{
   void getPeopleWithCatsRefactor() {
     MutableList<Person> peopleWithCatsMethodRef = this.people.selectWith(Person::hasPet, PetType.CAT);
 
-    Assertions.assertThat(peopleWithCatsMethodRef.size()).isEqualTo(2);
+    Assertions.assertThat(peopleWithCatsMethodRef).hasSize(2);
   }
 
   @Test
   void getPeopleWithoutCatsRefactor() {
     MutableList<Person> peopleWithoutCatsMethodRef = this.people.rejectWith(Person::hasPet, PetType.CAT);
 
-    Assertions.assertThat(peopleWithoutCatsMethodRef.size()).isEqualTo(6);
+    Assertions.assertThat(peopleWithoutCatsMethodRef).hasSize(6);
   }
 
   @Test
@@ -139,6 +141,20 @@ class MutableTest extends AbstractBaseTest{
     MutableListMultimap<String, Person> lastNamesToPeople =
         this.people.groupBy(Person::getLastName);
 
-    Assertions.assertThat(lastNamesToPeople.get("Smith").size()).isEqualTo(3);
+    Assertions.assertThat(lastNamesToPeople.get("Smith")).hasSize(3);
+  }
+
+  @Test
+  public void getPeopleByTheirPets() {
+    MutableSetMultimap<PetType, Person> petTypesToPeople =
+        this.people.groupByEach(Person::getPetTypes, Multimaps.mutable.set.empty());
+
+    Assertions.assertThat(petTypesToPeople.get(PetType.CAT)).hasSize(2);
+    Assertions.assertThat(petTypesToPeople.get(PetType.DOG)).hasSize(2);
+    Assertions.assertThat(petTypesToPeople.get(PetType.HAMSTER)).hasSize(1);
+    Assertions.assertThat(petTypesToPeople.get(PetType.TURTLE)).hasSize(1);
+    Assertions.assertThat(petTypesToPeople.get(PetType.BIRD)).hasSize(1);
+    Assertions.assertThat(petTypesToPeople.get(PetType.SNAKE)).hasSize(1);
+
   }
 }
