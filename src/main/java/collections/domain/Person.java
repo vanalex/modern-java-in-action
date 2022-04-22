@@ -1,5 +1,6 @@
 package collections.domain;
 
+import org.eclipse.collections.api.IntIterable;
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
@@ -45,5 +46,9 @@ public class Person {
 
   public boolean isPetPerson() {
     return this.pets.notEmpty();
+  }
+
+  public IntIterable getPetAges() {
+    return this.pets.asLazy().collectInt(Pet::getAge);
   }
 }

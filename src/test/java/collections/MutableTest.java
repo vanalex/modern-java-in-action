@@ -13,7 +13,11 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.api.multimap.set.MutableSetMultimap;
 import org.eclipse.collections.api.set.MutableSet;
+import org.eclipse.collections.api.set.primitive.IntSet;
+import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
 import org.eclipse.collections.impl.factory.Multimaps;
+import org.eclipse.collections.impl.factory.primitive.IntLists;
+import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.junit.jupiter.api.Test;
 
 class MutableTest extends AbstractBaseTest{
@@ -156,5 +160,16 @@ class MutableTest extends AbstractBaseTest{
     Assertions.assertThat(petTypesToPeople.get(PetType.BIRD)).hasSize(1);
     Assertions.assertThat(petTypesToPeople.get(PetType.SNAKE)).hasSize(1);
 
+  }
+
+  @Test
+  public void getAgeStatisticsOfPets() {
+    var petAges = this.people.flatCollectInt(Person::getPetAges, IntLists.mutable.empty());
+
+    IntSet uniqueAges = petAges.toSet();
+    var expected = IntSets.immutable.of(1, 2, 3, 4);
+    Assertions.assertThat(expected).isEqualTo(uniqueAges);
+
+    var stats = petAges.summaryStatistics();
   }
 }
