@@ -172,4 +172,17 @@ class MutableTest extends AbstractBaseTest{
 
     var stats = petAges.summaryStatistics();
   }
+
+  @Test
+  public void bobSmithsPetNamesAsString() {
+    // Find Bob Smith
+    Person person = this.getPersonNamed("Bob Smith");
+
+    // Get Bob Smith's pets' names
+    String names = person.getPets()
+        .collect(Pet::getName)
+        .makeString(" & ");
+
+    Assertions.assertThat("Dolly & Spot").isEqualTo(names);
+  }
 }
