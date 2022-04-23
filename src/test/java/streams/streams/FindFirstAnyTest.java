@@ -17,7 +17,7 @@ class FindFirstAnyTest {
                 .filter(n -> n % 2 == 0)
                 .findFirst();
 
-        assertThat(firstEven.get()).isEqualTo(4);
+        assertThat(firstEven).contains(4);
     }
 
     @Test
@@ -28,7 +28,7 @@ class FindFirstAnyTest {
                 .filter(n -> n % 2 == 0)
                 .findFirst();
 
-        assertThat(firstEvenGT10).isEqualTo(Optional.empty());
+        assertThat(firstEvenGT10).isEmpty();
     }
 
     @Test
@@ -67,12 +67,11 @@ class FindFirstAnyTest {
 
     @Test
     void testParallel() {
-        Set<String> words = new HashSet<>();
-        words.addAll(Arrays.asList("this", "is", "a", "stream", "of", "strings"));
+        Set<String> words = Set.of("this", "is", "a", "stream", "of", "strings");
         Optional<String> firstString = words.stream()
                 .parallel() // doesn't change anything in Java 8
                 .findFirst();
-        assertThat(firstString.get()).isEqualTo("this");
+        assertThat(words).contains(firstString.get());
     }
 
     @Test
@@ -81,7 +80,7 @@ class FindFirstAnyTest {
                 .unordered()
                 .findFirst();
 
-        assertThat(firstString.get()).isEqualTo("this");
+        assertThat(firstString).contains("this");
     }
 
     private static Integer delay(Integer n) {
