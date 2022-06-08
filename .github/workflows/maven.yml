@@ -23,6 +23,11 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'adopt'
+          cache: maven
       # - run: mvn -B install --no-transfer-progress --file pom.xml
+      - name: Run the Maven test phase
+        run: mvn --batch-mode --update-snapshots test
       - name: Run the Maven verify phase
         run: mvn --batch-mode --update-snapshots verify
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package
