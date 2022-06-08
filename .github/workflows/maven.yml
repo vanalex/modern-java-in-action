@@ -22,6 +22,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java-version }}
+          distribution: 'adopt'
       # - run: mvn -B install --no-transfer-progress --file pom.xml
       - name: Run the Maven verify phase
         run: mvn --batch-mode --update-snapshots verify
