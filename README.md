@@ -1,5 +1,8 @@
 ### Repo containing examples from the book Modern java in action
 
+![Visitor count](https://shields-io-visitor-counter.herokuapp.com/badge?page=vanalex.modern-java-in-action)
+![test](https://github.com/vanalex/modern-java-in-action/actions/workflows/maven.yml/badge.svg)
+
 This repo contains examples of the book Modern java in action.
 
 But it was decided as well to include other examples to practice diverse topics of java.

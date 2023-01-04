@@ -10,13 +10,15 @@
 
     <properties>
         <java.version>17</java.version>
+        <assertj.version>3.16.1</assertj.version>
+        <eclipse.collections.version>11.0.0</eclipse.collections.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.16.1</version>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -26,20 +28,14 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>one.util</groupId>
-            <artifactId>streamex</artifactId>
-            <version>0.7.3</version>
-        </dependency>
-        <dependency>
             <groupId>org.eclipse.collections</groupId>
             <artifactId>eclipse-collections-api</artifactId>
-            <version>11.0.0</version>
+            <version>${eclipse.collections.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse.collections</groupId>
             <artifactId>eclipse-collections</artifactId>
-            <version>11.0.0</version>
+            <version>${eclipse.collections.version}</version>
         </dependency>
     </dependencies>
     <build>
