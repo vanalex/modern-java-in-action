@@ -2,7 +2,7 @@ package java18;
 
 public class Stringify {
 
-  public String convertoToString(Object value) {
+ /* public String convertoToString(Object value) {
     return switch (value) {
       // the constant must be before the guarded pattern (otherwise it will never hit)
       case Integer i && i == 42 -> "42 is the answer";
@@ -21,5 +21,5 @@ public class Stringify {
       case null -> "null =s";
       default -> "unhandled type";
     };
-  }
+  }*/
 }
